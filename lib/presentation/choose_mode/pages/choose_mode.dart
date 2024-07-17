@@ -1,8 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spotifyclone/common/widgets/button/basic_app_button.dart';
 import 'package:spotifyclone/core/config/assets/app_images.dart';
 import 'package:spotifyclone/core/config/assets/app_vectors.dart';
+import 'package:spotifyclone/core/config/theme/app_colors.dart';
 
 class ChooseModePage extends StatelessWidget {
   const ChooseModePage({super.key});
@@ -11,7 +14,6 @@ class ChooseModePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-        
         children: [
           Container(
             padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
@@ -43,22 +45,64 @@ class ChooseModePage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      height: 50,
-                      width: 50,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
-                      ),
+                    Column(
+                      children: [
+                        ClipOval(
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                            child: Container(
+                              height: 50,
+                              width: 50,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color(0xff30393C),
+                              ),
+                              child: SvgPicture.asset(
+                                AppVectors.moon,
+                                fit: BoxFit.none,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Text(
+                          'Dark Mode',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 17,
+                              color: AppColors.grey),
+                        ),
+                      ],
                     ),
                     const SizedBox(
                       width: 40,
                     ),
-                    Container(
-                      height: 50,
-                      width: 50,
-                      decoration: const BoxDecoration(
-                          color: Colors.white, shape: BoxShape.circle),
+                    Column(
+                      children: [
+                        ClipOval(
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                            child: Container(
+                              height: 50,
+                              width: 50,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color(0xff30393C),
+                              ),
+                              child: SvgPicture.asset(
+                                AppVectors.sun,
+                                fit: BoxFit.none,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Text(
+                          'Light Mode',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 17,
+                              color: AppColors.grey),
+                        ),
+                      ],
                     ),
                   ],
                 ),
