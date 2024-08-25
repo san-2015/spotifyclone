@@ -7,6 +7,7 @@ import 'package:spotifyclone/core/config/assets/app_images.dart';
 import 'package:spotifyclone/core/config/assets/app_vectors.dart';
 import 'package:spotifyclone/core/config/theme/app_colors.dart';
 import 'package:spotifyclone/presentation/choose_mode/bloc/theme_cubit.dart';
+import 'package:spotifyclone/spotifyloginscreen.dart';
 
 class ChooseModePage extends StatelessWidget {
   const ChooseModePage({super.key});
@@ -129,7 +130,7 @@ class ChooseModePage extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (BuildContext context) =>
-                                  const ChooseModePage()));
+                                  const SpotifyLoginScreen()));
                     },
                     title: 'Continue'),
               ],

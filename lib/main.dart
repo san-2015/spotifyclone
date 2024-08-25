@@ -4,8 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:spotifyclone/core/config/theme/app_theme.dart';
+import 'package:spotifyclone/keypad_screen.dart';
+import 'package:spotifyclone/presentation/auth/pages/sign_in.dart';
 import 'package:spotifyclone/presentation/choose_mode/bloc/theme_cubit.dart';
 import 'package:spotifyclone/presentation/pages/splash.dart';
+import 'package:spotifyclone/spotifyloginscreen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,11 +31,13 @@ class MyApp extends StatelessWidget {
         child: BlocBuilder<ThemeCubit, ThemeMode>(
           builder: (context, mode) {
             return MaterialApp(
+              debugShowCheckedModeBanner: false,
                 title: 'Flutter Demo',
                 theme: AppTheme.lightTheme,
                 darkTheme: AppTheme.darkTheme,
                 themeMode: mode,
-                home: const SplashPage());
+                home:  SplashPage
+                ());
           },
         ));
   }
