@@ -8,7 +8,10 @@ import 'package:spotifyclone/keypad_screen.dart';
 import 'package:spotifyclone/presentation/auth/pages/sign_in.dart';
 import 'package:spotifyclone/presentation/choose_mode/bloc/theme_cubit.dart';
 import 'package:spotifyclone/presentation/pages/splash.dart';
+import 'package:spotifyclone/service_locator.dart';
 import 'package:spotifyclone/spotifyloginscreen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,12 +20,19 @@ Future<void> main() async {
         ? HydratedStorage.webStorageDirectory
         : await getApplicationDocumentsDirectory(),
   );
+// ...
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  await initializeDependencies();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
+ 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -31,13 +41,12 @@ class MyApp extends StatelessWidget {
         child: BlocBuilder<ThemeCubit, ThemeMode>(
           builder: (context, mode) {
             return MaterialApp(
-              debugShowCheckedModeBanner: false,
+                debugShowCheckedModeBanner: false,
                 title: 'Flutter Demo',
                 theme: AppTheme.lightTheme,
                 darkTheme: AppTheme.darkTheme,
                 themeMode: mode,
-                home:  SplashPage
-                ());
+                home: SplashPage());
           },
         ));
   }
